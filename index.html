@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyfrom Network | Servidor de Minecraft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* VARIABLES DE COLOR */
+        :root {
+            --azul-principal: #A2D2FF;
+            --azul-claro: #BDE0FE;
+            --azul-fondo: #F0F8FF;
+            --texto: #2D5A7E;
+            --blanco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--azul-fondo) 0%, var(--azul-claro) 100%);
+            color: var(--texto);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* CABECERA / HERO SECTION */
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: var(--texto);
+            text-shadow: 2px 2px 0px var(--blanco);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .server-status {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--azul-principal);
+        }
+
+        /* SECCIÓN DE PLUGINS */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            padding-bottom: 50px;
+        }
+
+        .grid-plugins {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(162, 210, 255, 0.3);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--azul-principal);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--texto);
+        }
+
+        .btn-guia {
+            background-color: var(--azul-principal);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-guia:hover {
+            background-color: #89c2ff;
+        }
+
+        /* MODAL (VENTANA DE GUÍA) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background-color: var(--blanco);
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 25px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--azul-principal);
+        }
+
+        .modal h2 { margin-bottom: 20px; color: var(--azul-principal); }
+        .modal ul { text-align: left; line-height: 1.8; padding-left: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Skyfrom Network</h1>
+        <p>Una experiencia única en las nubes</p>
+        <div class="server-status">
+            IP: <span>skyfrom.xyz</span> 🟢 Online
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center;">Nuestros Sistemas</h2>
+        
+        <div class="grid-plugins">
+            <div class="card">
+                <h3>SagaLogin</h3>
+                <p>Guia del plugin SagaLogin para los staff.</p>
+                <br>
+                <button class="btn-guia" onclick="openModal('SagaLogin')">Ver Guía</button>
+            </div>
+
+            <div class="card">
+                <h3>Economía</h3>
+                <p>Consigue dinero vendiendo ítems y crea tu propia tienda.</p>
+                <br>
+                <button class="btn-guia" onclick="openModal('sagastaff')">Ver Guía</button>
+            </div>
+
+            <div class="card">
+                <h3>Rangos</h3>
+                <p>Descubre los beneficios exclusivos de nuestros rangos VIP.</p>
+                <br>
+                <button class="btn-guia" onclick="openModal('rangos')">Ver Guía</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="guiaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const guias = {
+            SagaLogin: `
+                <h2>👥 Comandos de Usuario</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comando</th>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="command">/register </span></td>
+                    <td>Registra una nueva cuenta.</td>
+                    <td><span class="badge badge-user">Jugador</span></td>
+                </tr>
+                <tr>
+                    <td><span class="command">/login </span></td>
+                    <td>Inicia sesión en el servidor.</td>
+                    <td><span class="badge badge-user">Jugador</span></td>
+                </tr>
+                <tr>
+                    <td><span class="command">/premium</span></td>
+                    <td>Activa el Auto-Login (Para Premiums).</td>
+                    <td><span class="badge badge-user">Jugador</span></td>
+                </tr>
+                <tr>
+                    <td><span class="command">/unregister</span></td>
+                    <td>Borra tu propia cuenta.</td>
+                    <td><span class="badge badge-user">Jugador</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🛠️ Comandos de Administración</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comando</th>
+                    <th>Descripción</th>
+                    <th>Permiso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="command">/sa reload</span></td>
+                    <td>Recarga el config.yml sin reiniciar.</td>
+                    <td>sagalogin.admin</td>
+                </tr>
+                <tr>
+                    <td><span class="command">/sa suspend &lt;jugador&gt;</span></td>
+                    <td>Bloquea una cuenta o IP sospechosa.</td>
+                    <td>sagalogin.admin</td>
+                </tr>
+                <tr>
+                    <td><span class="command">/sa unsuspend &lt;jugador&gt;</span></td>
+                    <td>Desbloquea y resetea IP del jugador.</td>
+                    <td>sagalogin.admin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>`,
+            sagastaff: `
+    <h2>Guía de SagaStaff  /staff</h2>
+    <div class="guia-linea"><strong>Toggle Vanish (Pluma):</strong> Click derecho para hacerte invisible.</div>
+    <div class="guia-linea"><strong>Ver Inventario (Cofre de Ender):</strong> Click derecho sobre un jugador para ver su inventario.</div>
+    <div class="guia-linea"><strong>Teleport Aleatorio (Brújula):</strong> Click para ir a un jugador al azar.</div>
+    <div class="guia-linea"><strong>Congelar Jugador (Hielo):</strong> Click derecho sobre un jugador para congelarlo.</div>
+    <div class="tip-box">Tip: Usa estas herramientas con responsabilidad para mantener el orden en el servidor.</div>`,,
+            rangos: `
+                <h2>Guía de Rangos VIP</h2>
+                <ul>
+                    <li><strong>Rango Nube:</strong> Acceso a /fly y kits básicos.</li>
+                    <li><strong>Rango Galaxia:</strong> Multiplicador de dinero x2.</li>
+                    <li><strong>Rango Celestial:</strong> Prefijo exclusivo y entrada prioritaria.</li>
+                    <li>Visita nuestra tienda para más detalles.</li>
+                </ul>`
+        };
+
+        function openModal(plugin) {
+            document.getElementById('modal-body').innerHTML = guias[plugin];
+            document.getElementById('guiaModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('guiaModal').style.display = "none";
+        }
+
+        // Cerrar modal si se hace clic fuera de la caja blanca
+        window.onclick = function(event) {
+            let modal = document.getElementById('guiaModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
