@@ -172,8 +172,8 @@
             </div>
 
             <div class="card">
-                <h3>Rangos</h3>
-                <p>Descubre los beneficios exclusivos de nuestros rangos VIP.</p>
+                <h3>Proximamente</h3>
+                <p>...</p>
                 <br>
                 <button class="btn-guia" onclick="openModal('rangos')">Ver Guía</button>
             </div>
@@ -191,7 +191,7 @@
     <script>
         const guias = {
             SagaLogin: `
-                <h2>👥 Comandos de Usuario</h2>
+                <h2>Comandos de Usuario</h2>
         <table>
             <thead>
                 <tr>
@@ -226,7 +226,7 @@
     </div>
 
     <div class="section">
-        <h2>🛠️ Comandos de Administración</h2>
+        <h2>Comandos de Administración</h2>
         <table>
             <thead>
                 <tr>
@@ -255,20 +255,30 @@
         </table>
     </div>`,
             sagastaff: `
-    <h2>Guía de SagaStaff  /staff</h2>
-    <div class="guia-linea"><strong>Toggle Vanish (Pluma):</strong> Click derecho para hacerte invisible.</div>
-    <div class="guia-linea"><strong>Ver Inventario (Cofre de Ender):</strong> Click derecho sobre un jugador para ver su inventario.</div>
-    <div class="guia-linea"><strong>Teleport Aleatorio (Brújula):</strong> Click para ir a un jugador al azar.</div>
-    <div class="guia-linea"><strong>Congelar Jugador (Hielo):</strong> Click derecho sobre un jugador para congelarlo.</div>
-    <div class="tip-box">Tip: Usa estas herramientas con responsabilidad para mantener el orden en el servidor.</div>`,,
-            rangos: `
-                <h2>Guía de Rangos VIP</h2>
-                <ul>
-                    <li><strong>Rango Nube:</strong> Acceso a /fly y kits básicos.</li>
-                    <li><strong>Rango Galaxia:</strong> Multiplicador de dinero x2.</li>
-                    <li><strong>Rango Celestial:</strong> Prefijo exclusivo y entrada prioritaria.</li>
-                    <li>Visita nuestra tienda para más detalles.</li>
-                </ul>`
+    <h2>Guía de SagaStaff /staff</h2>
+    <table style="width:100%; border-collapse: collapse; margin-top: 15px; text-align: left;">
+        <tr style="border-bottom: 2px solid var(--azul-claro);">
+            <th style="padding: 10px;">Ítem</th>
+            <th style="padding: 10px;">Acción</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px;"><strong>Pluma (Vanish)</strong></td>
+            <td style="padding: 12px;">Click derecho para hacerte invisible.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px;"><strong>Cofre Ender</strong></td>
+            <td style="padding: 12px;">Click derecho sobre un jugador para ver su inventario.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px;"><strong>Brújula (TP)</strong></td>
+            <td style="padding: 12px;">Click para ir a un jugador al azar.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px;"><strong>Hielo (Freeze)</strong></td>
+            <td style="padding: 12px;">Click derecho sobre un jugador para congelarlo.</td>
+        </tr>
+    </table>
+    <div class="tip-box">Tip: Usa estas herramientas con responsabilidad para mantener el orden en el servidor.</div>`,
         };
 
         function openModal(plugin) {
